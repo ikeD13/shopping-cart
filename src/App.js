@@ -18,8 +18,11 @@ class App extends Component {
         { id: 46, name: 'Intelligent Leather Clock', priceInCents: 2999 },
         { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
         { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
-      ]
-
+      ],
+      cartList:[],
+      name:"",
+      price: 0,
+      quantity: 0
     //  heyo!
     }
   }
@@ -28,20 +31,26 @@ class App extends Component {
     let newItem = {
       product: {
         id: this.state.cartList.length + 1,
-        name: this.state.Name,
-        priceInCents:399
+        name: this.state.name,
+        priceInCents:this.state.priceInCents
       },
       }
+      this.setState({
+        cartList: this.state.cartList.concat([newItem])
+      })
     }
+  updateQuantity = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      quantity: event.target.value
+    })
+  }
   
-  
-  
-  // this.setState({
-  //   cartList: [...this.state]
-  // })
-//  let selectItem= (event)=>{
-//    event.preventDefault();
-//   }
+  updateCart = (event) => {
+    this.setState({
+      name: event.target.value
+    })
+  }
 
   render()
   {
@@ -54,7 +63,7 @@ class App extends Component {
       <div className="App">
       <Header/>
       <CartItems cartItemsList={cartItemsList}/>
-      <AddItem products={this.state.products} addItem={this.addItem} />
+      <AddItem products={this.state.products} addItem={this.addItem} update={this.updateQuantity} updateCart={this.updateCart}/>
       <Footer
       copyright={2017}/>
       </div>

@@ -5,12 +5,12 @@ const AddItem = (props)=>{
         <div className="container">
         <form onSubmit={props.addItem}>
         <div class="form-group">
-        <label for="exampleInputEmail1">Quantity</label>
-        <input type="number" class="form-control" id="quantity" placeholder=""/>
+        <label htmlFor="exampleInputEmail1">Quantity</label>
+        <input type="number" class="form-control" id="quantity" placeholder="" onChange={props.update}/>
         </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select onChange={props.selectItem} class="form-control" id="exampleFormControlSelect1">
+                <label for="exampleFormControlSelect1">Select Inventory</label>
+                <select onChange={props.updateCart} class="form-control" id="exampleFormControlSelect1">
                 {props.products.map(product => <option key={product.id} value={product.name}>{product.name}</option>)}
                 </select>
             </div>
