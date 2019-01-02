@@ -32,38 +32,38 @@ class App extends Component {
       product: {
         id: this.state.cartList.length + 1,
         name: this.state.name,
-        priceInCents:this.state.priceInCents
+        price:this.state.price
       },
+      quantity: this.state.quantity
       }
       this.setState({
         cartList: this.state.cartList.concat([newItem])
       })
     }
   updateQuantity = (event) => {
-    console.log(event.target.value)
     this.setState({
       quantity: event.target.value
     })
   }
   
   updateCart = (event) => {
+    let result = this.state.products.filter(x => x.name ===event.target.value)
+    console.log(result)
     this.setState({
-      name: event.target.value
+      name: event.target.value,
+      price: result[0].priceInCents
     })
   }
 
   render()
   {
-    const cartItemsList = [
-      { id: 1, product: { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 }, quantity: 1 },
-      { id: 2, product: { id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 }, quantity: 2 },
-      { id: 3, product: { id: 42, name: 'Intelligent Paper Knife', priceInCents: 1999 }, quantity: 1 },
-    ]
+
+    
     return (
       <div className="App">
       <Header/>
-      <CartItems cartItemsList={cartItemsList}/>
-      <AddItem products={this.state.products} addItem={this.addItem} update={this.updateQuantity} updateCart={this.updateCart}/>
+      <CartItems cartItemsList={this.state.cartList}/>
+      <AddItem products={this.state.products} addItem={this.addItem} update={this.updateQuantity} updateCart={this.updateCart} />
       <Footer
       copyright={2017}/>
       </div>
