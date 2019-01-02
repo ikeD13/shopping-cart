@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CartItem from './cartItem.js';
 const CartItems = (props) => {
+    console.log(props.cartItemsList)
   return (
       <div className="container">
       <h1>Cart Items</h1>
@@ -13,6 +14,7 @@ const CartItems = (props) => {
           </div>
           </div>
               {props.cartItemsList.map(item => <CartItem item={item}/>)}
+        {console.log("cartItemsstopbeingmean",props)}
       </div>
       </div>
   );

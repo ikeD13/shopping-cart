@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header.js';
 import Footer from  './components/Footer.js';
 import CartItems from './components/CartItems.js';
-import AddItem from './components/CartItems.js'
+import AddItem from './components/addItem.js'
 class App extends Component {
   constructor(){
     super()
@@ -36,9 +36,9 @@ class App extends Component {
   
   
   
-//   this.state({
-//     cartList: [...this.state]
-//   })
+  // this.setState({
+  //   cartList: [...this.state]
+  // })
 //  let selectItem= (event)=>{
 //    event.preventDefault();
 //   }
@@ -56,7 +56,7 @@ class App extends Component {
       <CartItems cartItemsList={cartItemsList}/>
       <AddItem products={this.state.products} addItem={this.addItem} />
       <Footer
-      copyright={2016}/>
+      copyright={2017}/>
       </div>
   
     );
