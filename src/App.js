@@ -32,12 +32,18 @@ class App extends Component {
       product: {
         id: this.state.cartList.length + 1,
         name: this.state.name,
-        price:this.state.price
+        price:this.state.price*this.state.quantity
       },
       quantity: this.state.quantity
       }
+      let prices = this.state.cartList.map(ducats =>ducats.product.price)
+      let total = prices.reduce((acc, curr)=>{
+        return (acc + curr)
+      }, 0)
+      total+=newItem.product.price
       this.setState({
-        cartList: this.state.cartList.concat([newItem])
+        cartList: this.state.cartList.concat([newItem]),
+        total: total
       })
     }
   updateQuantity = (event) => {
@@ -48,10 +54,9 @@ class App extends Component {
   
   updateCart = (event) => {
     let result = this.state.products.filter(x => x.name ===event.target.value)
-    console.log(result)
     this.setState({
       name: event.target.value,
-      price: result[0].priceInCents
+      price: result[0].priceInCents/100
     })
   }
 
@@ -63,7 +68,7 @@ class App extends Component {
       <div className="App">
       <Header/>
       <CartItems cartItemsList={this.state.cartList}/>
-      <AddItem products={this.state.products} addItem={this.addItem} update={this.updateQuantity} updateCart={this.updateCart} />
+      <AddItem products={this.state.products} addItem={this.addItem} update={this.updateQuantity} updateCart={this.updateCart} total={this.state.total}/>
       <Footer
       copyright={2017}/>
       </div>

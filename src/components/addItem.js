@@ -3,6 +3,7 @@ import React from 'react';
 const AddItem = (props)=>{
     return (
         <div className="container">
+        <p>Order Total ${props.total}</p>
         <form onSubmit={props.addItem}>
         <div className="form-group">
         <label htmlFor="exampleInputEmail1">Quantity</label>
